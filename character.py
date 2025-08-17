@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-class Character():
+class Character:
     def __init__(self, name):
         self._name = name
         self._health = 100
