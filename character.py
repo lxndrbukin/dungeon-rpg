@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 
+# BASE CHARACTER
 class Character:
     def __init__(self, name):
         self._name = name
@@ -12,8 +13,7 @@ class Character:
     @property
     def health(self):
         return self._health
-    @health.setter
-    def health(self, action):
+    def update_health(self, action):
         if action["type"] == "damage":
             self._health -= action["value"]
         elif action["type"] == "heal":
@@ -24,9 +24,8 @@ class Character:
     @weapon.setter
     def weapon(self, new_weapon):
         self._weapon = new_weapon
-    def take_damage(self, damage):
-        self._health -= damage
 
+# CHARACTER CLASS STRUCTURE
 class Class(ABC, Character):
     def attack(self, target):
         damage = 10
@@ -36,6 +35,7 @@ class Class(ABC, Character):
     def strong_attack(self, target):
         pass
 
+# CHARACTER CLASS
 class Knight(Class):
     def strong_attack(self, target):
         damage = 25
@@ -43,3 +43,8 @@ class Knight(Class):
 
 
 # class Wizard(Class):
+
+
+knight = Knight("Alex")
+knight.health = {"type": "damage", "value": 10}
+print(knight.health)
